@@ -1,5 +1,5 @@
 <?php
-return[
+return array(
 	'registration/add'	=>'registration/add',
 	'registration'		=>'registration/index',
 	
@@ -17,7 +17,7 @@ return[
 	'marketbuy/page-([0-9]+)'		=>'marketbuy/index/$1',
 	'marketbuy'		=>'marketbuy/index',
 	
-	'page-([0-9]+)'		=>'site/index/$1', //actionIndex in SiteController + page
-	''		=>'site/index', //actionIndex
-];
+	'page-([0-9]+)'		=>'marys/index/$1', //actionIndex in MarysController + page
+	''		=>'marys/index', //actionIndex
+);
 ?>

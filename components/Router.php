@@ -4,7 +4,7 @@ class Router
 	private $routes; //routes array
 	public function __construct()
 	{
-		$routesPath = ROOT.'/config/routes.php';
+		$routesPath = ROOT.'/components/routes.php';
 		//take routes from file
 		$this->routes = include($routesPath);
 	}
@@ -18,7 +18,15 @@ class Router
 	{
 		//get request string
 		$uri = $this->getURI();
-		
+		//set lang
+		$uriLang = explode('/',$uri);
+		$paramsPath = ROOT.'/config/config.php';
+		$params = include_once($paramsPath);
+		$params = $params['lang'];
+		$lang = Lang::get(strtolower(isset($uriLang[0])?$uriLang[0]:''),$params['languages']);
+		if($lang !== '')$uri = trim(str_replace($uriLang[0],'',$uri),'/');
+		else $lang = $params['default_lang'];
+		define('LANG',$lang);
 		//check in routes array
 		foreach($this->routes as $uriPattern => $path)
 		{
@@ -28,23 +36,25 @@ class Router
 				$internalRoute = preg_replace("~$uriPattern~",$path,$uri);
 				
 				$segments = explode('/',$internalRoute);
+								
 				$controllerName = array_shift($segments).'Controller';
 				$controllerName = ucfirst($controllerName);
 				
 				$actionName = 'action'.ucfirst(array_shift($segments));
+				
 				$parameters = $segments;
 				
-				$controllerFile = ROOT.'/controlers/'.$controllerName.'.php';
+				$controllerFile = ROOT.'/controllers/'.$controllerName.'.php';
 				
 				if(file_exists($controllerFile))include_once($controllerFile);
 				
-				$controlerObject = new $controllerName;
-				
-				if(method_exists($controlerObject, $actionName))
+				$controllerObject = new $controllerName;
+				//echo $controllerName.' '.$actionName.'<br>';
+				if(method_exists($controllerObject, $actionName))
 				{
 					$result = call_user_func_array(array($controllerObject,$actionName),$parameters);
-					if(!$result)break
-					else header();
+					if($result !== null)break;
+					//else header('Location: /404/');
 				}
 			}
 		}
