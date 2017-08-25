@@ -9,7 +9,7 @@ class MarysController
 		$this->model = new Goods();
 		$this->view = new View();
 	}
-	public function actionIndex()
+	public function actionIndex($page = null)
 	{
 		$data = $this->model->getMainGoods();
 		$this->view->generate($this->model->mainTemplate, $this->model->template, $data);

@@ -7,8 +7,12 @@ return array(
 	'db' => array(
 		'host'=>'localhost',
 		'user'=>'root',
-		'dbname'=>'sale',
+		'dbname'=>'marys',
 		'password'=>'',
+		'charset'=>'utf8',
 		),
+	'app' => array(
+		'site_url'=>'http://marys.com.ua',
+		),	
 );
 ?>

@@ -17,11 +17,11 @@ class Router
 	public function run()
 	{
 		//get request string
-		$uri = $this->getURI();
+		$uri = strtolower($this->getURI());
 		//set lang
 		$uriLang = explode('/',$uri);
 		$paramsPath = ROOT.'/config/config.php';
-		$params = include_once($paramsPath);
+		$params = include($paramsPath);
 		$params = $params['lang'];
 		$lang = Lang::get(strtolower(isset($uriLang[0])?$uriLang[0]:''),$params['languages']);
 		if($lang !== '')$uri = trim(str_replace($uriLang[0],'',$uri),'/');
@@ -30,8 +30,9 @@ class Router
 		//check in routes array
 		foreach($this->routes as $uriPattern => $path)
 		{
-			if(preg_match("~$uriPattern~",$uri))
+			if($uriPattern == $uri/*preg_match("~$uriPattern~",$uri)*/)
 			{
+				//echo 'Pat: '.$uriPattern.' Uri:'.$uri."<br>";
 				//get internal path from outside according to rule
 				$internalRoute = preg_replace("~$uriPattern~",$path,$uri);
 				

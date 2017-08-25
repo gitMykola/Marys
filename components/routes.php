@@ -19,5 +19,10 @@ return array(
 	
 	'page-([0-9]+)'		=>'marys/index/$1', //actionIndex in MarysController + page
 	''		=>'marys/index', //actionIndex
+	'address'	=>'address/index',
+	'address/get'=>'address/get',
+	'address/get/page-([0-9]+)'	=>'address/get/$1',
+	'address/set'	=> 'address/set',
+	'address/del' => 'address/del',
 );
 ?>
