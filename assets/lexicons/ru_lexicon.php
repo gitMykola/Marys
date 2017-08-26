@@ -1,6 +1,6 @@
 <?php 
 return array(
-	'title'=>'Marys RU',
+	'title'=>'Marys',
 	'buttons'=> array(
 		'add'=>'Добавить',
 		'addAdr'=>'Добавить новый адрес',
@@ -17,5 +17,15 @@ return array(
 			'appart'=>'Дом/квартира',
 			),
 		),	
+	'menu'=>array(
+		'home'=>'Главная',
+		'shop'=>'Магазин',
+		'about'=>'О нас',
+		'contacts'=>'Контакты',
+		'login'=>'Войти',
+		'logout'=>'Выйти',
+		'register'=>'Регистрация',
+		'search'=>'Поиск',
+	),		
 );
 ?>

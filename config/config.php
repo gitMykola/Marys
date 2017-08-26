@@ -13,6 +13,6 @@ return array(
 		),
 	'app' => array(
 		'site_url'=>'http://marys.com.ua',
-		),	
+		),		
 );
 ?>

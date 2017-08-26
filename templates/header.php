@@ -11,6 +11,8 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="/public/js/app.js"></script>
 		<link rel="stylesheet" href="/public/css/app.css">
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'/>
+
 </head>
 	<body>
 	
