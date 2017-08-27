@@ -48,8 +48,8 @@ class Router
 				$controllerFile = ROOT.'/controllers/'.$controllerName.'.php';
 				
 				if(file_exists($controllerFile))include_once($controllerFile);
-				
-				$controllerObject = new $controllerName;
+				$user = Auth::authorization(new User);
+				$controllerObject = new $controllerName($user);
 				//echo $controllerName.' '.$actionName.'<br>';
 				if(method_exists($controllerObject, $actionName))
 				{

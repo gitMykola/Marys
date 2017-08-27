@@ -5,7 +5,7 @@ class View{
 	function __construct(){
 	} 
 	
-	function generate($mainTemplate, $template = null, $data = array(), $user = null){
+	function generate($mainTemplate, $template = null, $data = array(), $user){
 		$lex = Lang::getLexicon();
 		$view = $mainTemplate;
 		if(file_exists($view))include_once $view;

@@ -1,11 +1,13 @@
 <?php 
 return array(
-	'title'=>'Marys',
+	'title'=>'MARY\'S',
 	'buttons'=> array(
 		'add'=>'Add',
 		'addAdr'=>'Add new address',
 		'delete'=>'Delete',
 		'edit'=>'Edit',
+		'open'=>'Open',
+		'close'=>'Close',
 		),
 	'ref'=>array(
 		'addr'=>array(
@@ -22,10 +24,18 @@ return array(
 		'shop'=>'Shop',
 		'about'=>'About',
 		'contacts'=>'Contacts',
+		'shopcart'=>'Shopcart',
+		'search'=>'Search',
+	),	
+	'auth'=>array(
 		'login'=>'Sign In',
 		'logout'=>'Sign Out',
 		'register'=>'Registration',
-		'search'=>'Search',
-	),		
+		'name'=>'Name',
+		'email'=>'Email',
+		'password'=>'Password',
+		'cpassword'=>'Repeat password',
+		'loginFB'=>'Sign In with Facebook',
+	),	
 );
 ?>

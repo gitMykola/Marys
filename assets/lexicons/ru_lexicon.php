@@ -1,11 +1,13 @@
 <?php 
 return array(
-	'title'=>'Marys',
+	'title'=>'MARY\'S',
 	'buttons'=> array(
 		'add'=>'Добавить',
 		'addAdr'=>'Добавить новый адрес',
 		'delete'=>'Удалить',
 		'edit'=>'Редактировать',
+		'open'=>'Открыть',
+		'close'=>'Закрыть',
 		),
 	'ref'=>array(
 		'addr'=>array(
@@ -22,10 +24,18 @@ return array(
 		'shop'=>'Магазин',
 		'about'=>'О нас',
 		'contacts'=>'Контакты',
+		'search'=>'Поиск',
+		'shopcart'=>'Корзина',
+	),	
+	'auth'=>array(
 		'login'=>'Войти',
 		'logout'=>'Выйти',
 		'register'=>'Регистрация',
-		'search'=>'Поиск',
-	),		
+		'name'=>'Как к Вам обращаться',
+		'email'=>'Email',
+		'password'=>'Пароль',
+		'cpassword'=>'Повторить пароль',
+		'loginFB'=>'Зайти с Facebook',
+	),	
 );
 ?>
