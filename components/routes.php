@@ -3,9 +3,9 @@ return array(
 	'registration/add'	=>'registration/add',
 	'registration'		=>'registration/index',
 	
-	'authorization'		=>'authorization/authoriz',
-	
-	'logout'		=>'authorization/logout',
+	'login'		=>'auth/login',
+	'register'		=>'auth/register',	
+	'logout'		=>'auth/logout',
 	
 	//Sale & buy market
 	'marketsale/add'		=>'marketsale/add',
