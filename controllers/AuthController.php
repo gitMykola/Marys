@@ -4,41 +4,46 @@ class AuthController
 	public function __construct()
 	{
 	}
-	public function actionLogin()
-	{	
-	}
-	public function actionRegister($page = null)
+	public function actionRegister()
 	{
-		$data = file_get_contents('php://input');
 		if($_SERVER["REQUEST_METHOD"] == "POST")
 		{
-			$send_data = json_decode($data,true);
+			$data = file_get_contents('php://input');
+			//return print_r(json_encode(array('err'=>User::getHash(''))));
+			$err = '';
+			$data = json_decode($data,true);
 			//echo $data['name'];
-			$data['name'] = isset($send_data['name'])?$send_data['name']:'';
-			$data['email'] = isset($send_data['email'])?$send_data['email']:'';
-			$data['password'] = isset($send_data['password'])?$send_data['password']:'';
-			$data['avatar'] = isset($send_data['avatar'])?$send_data['avatar']:'';
-			$data['create'] = isset($send_data['create'])?$send_data['create']:time();
-			$data['update'] = isset($send_data['update'])?$send_data['update']:$data['create'];
-			$data['rating'] = isset($send_data['rating'])?$send_data['rating']:0;
-			echo User::set($data);
-		}else die;
+			$data['name'] = isset($data['name'])?$data['name']:null;
+			$data['email'] = isset($data['email'])?$data['email']:null;
+			if(!$data['email']){return print_r(json_encode(array('err'=>'Email error!')));}
+			if(User::getByEmail($data['email'])){return print_r(json_encode(array('err'=>'Email exist!')));}
+			$data['password'] = isset($data['password'])?$data['password']:null;
+			if(!$data['password']){return print_r(json_encode(array('err'=>'Password error!')));}
+			$data['avatar'] = isset($data['avatar'])?$data['avatar']:'anonym';
+			$data['create'] = isset($data['create'])?$data['create']:time();
+			$data['update'] = isset($data['update'])?$data['update']:$data['create'];
+			$data['rating'] = isset($data['rating'])?$data['rating']:0;
+			if(User::set($data)) return print_r(json_encode(array('err'=>null)));
+	}else return print_r(json_encode(array('err'=>'User not created!')));
 	}
-	public function actionSet()
+	public function actionLogin()
 	{
-		$err = "";
 		if($_SERVER["REQUEST_METHOD"] == "POST")
 		{
-			//var_export($_POST);
-			$this->data["country"] = isset($_POST["country"])?$_POST["country"]:"";
-			$this->data["city"] = isset($_POST["city"])?$_POST["city"]:"";
-			$this->data["region"] = isset($_POST["region"])?$_POST["region"]:"";
-			$this->data["street"] = isset($_POST["street"])?$_POST["street"]:"";
-			$this->data["appartment"] = isset($_POST["appartment"])?$_POST["appartment"]:"";
-			
-		}else $err .= " Invalid address!";
-		if($err !== "") App::loged($err);
-		else if(!$this->model->set($this->data)) App::loged('database error with address set function.');
+			$data = file_get_contents('php://input');
+			$err = "";
+			$data = json_decode($data,true);
+			//echo $data['name'];
+			$data['name'] = isset($data['name'])?$data['name']:null;
+			$data['email'] = isset($data['email'])?$data['email']:null;
+			if(!$data['email']){return print_r(json_encode(array('err'=>'Email error!')));}
+			return print_r(json_encode(User::getByEmail($data['email'])));
+			$id = User::getByEmail($data['email']);
+			if(!$id){return print_r(json_encode(array('err'=>'Email not found!')));}
+			$data['password'] = isset($data['password'])?$data['password']:null;
+			if(!$data['password']){return print_r(json_encode(array('err'=>'Password error!')));}
+			// check pwd equals!
+		}else return print_r(json_encode(array('err'=>'User not loged in!')));
 	}
 	public function actionDel()
 	{

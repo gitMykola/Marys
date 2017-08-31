@@ -20,12 +20,13 @@ class User extends Model{
 		//validate $email
 		try{
 		$db = Db::getConnection();
-		$sql = "select `id`,`name_".LANG."`,`email`,`password`, `avatar`, `create`, `update`, `rating` from `users` where email=:email";
+		$sql = "select `id` from `users` where email=:email";
 		$result = $db->prepare($sql);
 		$result->bindParam(':email',$email,PDO::PARAM_STR);
 		$result->setFetchMode(PDO::FETCH_ASSOC);
 		if(!$result->execute()) return false;
-		return $result->fetch();
+		$data = $result->fetch(PDO::FETCH_ASSOC);
+		return $data['id'];
 		}
 		catch(PDOException $Exception){App::loged($Exception);}
 	}
@@ -34,29 +35,21 @@ class User extends Model{
 		if(!User::validate($data))return false;
 		try{
 		$db = Db::getConnection();
-		$sql = "insert into `users` (`name_".LANG."`,`email`,`password`,`avatar`,`create`,`update`,`rating)"
+		$sql = "insert into `users` (`name_".LANG."`,`email`,`password`,`avatar`,`create`,`update`,`rating`)"
 		." values(:name, :email, :password, :avatar, :create, :update, :rating)";
 		$result = $db->prepare($sql);
-		$name = $data['name'];
-		$email = $data['email'];
-		$password = $data['password'];
-		$avatar = $data['avatar'];
-		$create = $data['create'];
-		$update = $data['update'];
-		$rating = $data['rating'];
-		$result->bindParam(':name',$name,PDO::PARAM_STR);
-		$result->bindParam(':email',$email,PDO::PARAM_STR);
-		$result->bindParam(':password',$password,PDO::PARAM_STR);
-		$result->bindParam(':avatar',$avatar,PDO::PARAM_STR);
-		$result->bindParam(':create',$create,PDO::PARAM_STR);
-		$result->bindParam(':update',$update,PDO::PARAM_STR);
-		$result->bindParam(':rating',$rating,PDO::PARAM_INT);
+		$result->bindParam(':name',$data['name'],PDO::PARAM_STR);
+		$result->bindParam(':email',$data['email'],PDO::PARAM_STR);
+		$result->bindParam(':password',User::getHash($data['password']),PDO::PARAM_STR);
+		$result->bindParam(':avatar',$data['avatar'],PDO::PARAM_STR);
+		$result->bindParam(':create',$data['create'],PDO::PARAM_STR);
+		$result->bindParam(':update',$data['update'],PDO::PARAM_STR);
+		$result->bindParam(':rating',$data['rating'],PDO::PARAM_INT);
 		$result->setFetchMode(PDO::FETCH_ASSOC);
-		//return $result->execute();
 		if(!$result->execute()) return false;
-		return $result->fetchAll();
+		return true;
 		}
-		catch(PDOException $Exception){App::loged($Exception);echo $Exception;}	
+		catch(PDOException $Exception){App::loged($Exception);return $Exception;}	
 		
 	}
 	public function update($data)
@@ -70,6 +63,16 @@ class User extends Model{
 	private function validate($data)
 	{
 		return true;
+	}
+	public static function getHash($pwd)
+	{
+		$rndstr ='';
+		$chset = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';	
+		while(strlen($rndstr) < 16)
+		{
+			$rndstr .= $chset[rand(0,strlen($chset) - 1)];
+		}
+		return crypt($pwd,$rndstr);
 	}
 }
 ?>
