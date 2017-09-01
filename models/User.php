@@ -15,18 +15,33 @@ class User extends Model{
 	{
 		
 	}
+	public function getById($id)
+	{
+		//validate $email
+		try{
+		$db = Db::getConnection();
+		$sql = "select `id`,`name_".LANG."`,`email`,`password`, `salt`,`avatar`,`create`,`update`,`rating` from `users` where id=:id";
+		$result = $db->prepare($sql);
+		$result->bindParam(':id',$id,PDO::PARAM_INT);
+		$result->setFetchMode(PDO::FETCH_ASSOC);
+		if(!$result->execute()) return false;
+		$data = $result->fetch(PDO::FETCH_ASSOC);
+		return $data;
+		}
+		catch(PDOException $Exception){App::loged($Exception);}
+	}
 	public function getByEmail($email)
 	{
 		//validate $email
 		try{
 		$db = Db::getConnection();
-		$sql = "select `id` from `users` where email=:email";
+		$sql = "select `id`,`name_".LANG."`,`email`,`password`, `salt`,`avatar`,`create`,`update`,`rating` from `users` where email=:email";
 		$result = $db->prepare($sql);
 		$result->bindParam(':email',$email,PDO::PARAM_STR);
 		$result->setFetchMode(PDO::FETCH_ASSOC);
 		if(!$result->execute()) return false;
 		$data = $result->fetch(PDO::FETCH_ASSOC);
-		return $data['id'];
+		return $data;
 		}
 		catch(PDOException $Exception){App::loged($Exception);}
 	}
@@ -35,12 +50,14 @@ class User extends Model{
 		if(!User::validate($data))return false;
 		try{
 		$db = Db::getConnection();
-		$sql = "insert into `users` (`name_".LANG."`,`email`,`password`,`avatar`,`create`,`update`,`rating`)"
-		." values(:name, :email, :password, :avatar, :create, :update, :rating)";
+		$sql = "insert into `users` (`name_".LANG."`,`email`,`password`, `salt`,`avatar`,`create`,`update`,`rating`)"
+		." values(:name, :email, :password, :salt, :avatar, :create, :update, :rating)";
 		$result = $db->prepare($sql);
 		$result->bindParam(':name',$data['name'],PDO::PARAM_STR);
 		$result->bindParam(':email',$data['email'],PDO::PARAM_STR);
-		$result->bindParam(':password',User::getHash($data['password']),PDO::PARAM_STR);
+		$hash = User::getHash($data['password']);
+		$result->bindParam(':password',$hash['hash'],PDO::PARAM_STR);
+		$result->bindParam(':salt',$hash['salt'],PDO::PARAM_STR);
 		$result->bindParam(':avatar',$data['avatar'],PDO::PARAM_STR);
 		$result->bindParam(':create',$data['create'],PDO::PARAM_STR);
 		$result->bindParam(':update',$data['update'],PDO::PARAM_STR);
@@ -72,7 +89,7 @@ class User extends Model{
 		{
 			$rndstr .= $chset[rand(0,strlen($chset) - 1)];
 		}
-		return crypt($pwd,$rndstr);
+		return array('hash'=>crypt($pwd,$rndstr),'salt'=>$rndstr);
 	}
 }
 ?>

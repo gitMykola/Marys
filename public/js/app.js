@@ -39,7 +39,7 @@ $(function(){
 				if (this.readyState === 4 && this.status === 200) {
 					console.dir(this.responseText);
 					//if(this.responseText.err){
-					//var response = JSON.parse(this.responseText);
+					var response = JSON.parse(this.responseText);
 					//if (response.err !== null) document.querySelector('#alarm').innerHTML = response.err;//}
 					//else window.location.href = href;
 				}//	else console.dir(this.responseText);
