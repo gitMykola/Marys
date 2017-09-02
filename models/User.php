@@ -1,7 +1,5 @@
 <?php
 class User extends Model{
-	public $auth;
-	public $admin;
 	public $template;
 	public $mainTemplate;
 	public function __construct()
@@ -28,7 +26,7 @@ class User extends Model{
 		$data = $result->fetch(PDO::FETCH_ASSOC);
 		return $data;
 		}
-		catch(PDOException $Exception){App::loged($Exception);}
+		catch(PDOException $Exception){App::loged($Exception);return false;}
 	}
 	public function getByEmail($email)
 	{

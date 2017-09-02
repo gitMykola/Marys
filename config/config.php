@@ -13,6 +13,7 @@ return array(
 		),
 	'app' => array(
 		'site_url'=>'http://marys.com.ua',
+		'session_auth_live'=>60*60*2,
 		),		
 );
 ?>

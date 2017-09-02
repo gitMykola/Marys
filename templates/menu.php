@@ -4,7 +4,7 @@
 	$out .= '<a class="menu-brand" href="/'.LANG.'">'.$lex['title'].'</a>';
 	$out .= '<div class="menu-container">';
 	$out .= '<div class="right-panel">';
-	if($user->auth) $out .= '<a class="logout" href="/logout"><span class="glyphicon glyphicon-log-out"></span>'.$lex['auth']['logout'].'</a>';
+	if($user['auth']) $out .= '<a class="logout" href="/logout"><span class="glyphicon glyphicon-log-out"></span>'.$lex['auth']['logout'].'</a>';
 	else {
 			$out .= '<a class="login" href="javascript:void(0);"><span class="glyphicon glyphicon-log-in"></span>'.$lex['auth']['login'].'</a>';
 			$out .= '<a class="register" href="javascript:void(0);"><span class="glyphicon glyphicon-user"></span>'.$lex['auth']['register'].'</a>';
@@ -13,7 +13,7 @@
 	$out .= '<div class="menu-under"><div class="menu-container"><ul class="menu-list">';
 	foreach($menu as $key=>$li)
 		$out .= '<li><a href="/'.LANG.'/'.$li[0].'"><span>'.$lex['menu'][$key].'</span><span class="'.$li[1].'"></span></a></li>';
-	if($user->admin) $out .= '<li><a href="/admin">Admin</a></li>';
+	if($user['admin']) $out .= '<li><a href="/admin">Admin</a></li>';
 	$out .= '</ul>';
 	$out .= '<a class="cart" href="/chart" title="'.$lex['menu']['shopcart'].'"><span>'.$lex['menu']['shopcart'].'</span><span class="glyphicon glyphicon-shopping-cart"></span><b>0</b></a>';
 	$out .= '</div></div></div>';

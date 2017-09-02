@@ -37,31 +37,27 @@ class AuthController
 			//echo $data['name'];
 			$data['name'] = isset($data['name'])?htmlentities($data['name']):null;
 			$data['email'] = isset($data['email'])?htmlentities($data['email']):null;
-			if(!$data['email'] || strlen($data['email']) > 149){return print_r(json_encode(array('err'=>'Email error!')));}
+			if(!$data['email'] || strlen($data['email']) > 149)return App::reqAJ(array('err'=>'Email error!'));
 			//return print_r(json_encode(User::getByEmail($data['email'])));
 			$user = User::getByEmail($data['email']);
-			if(!count($user)){return print_r(json_encode(array('err'=>'Email not found!')));}
+			if(!count($user))return App::reqAJ(array('err'=>'Email not found!'));
 			$data['password'] = isset($data['password'])?htmlentities($data['password']):null;
-			if(!$data['password'] || strlen($data['password']) > 149){return print_r(json_encode(array('err'=>'Password error! '.$data['password'])));}
+			if(!$data['password'] || strlen($data['password']) > 149)return App::reqAJ(array('err'=>'Password error! '.$data['password']));
 			// check pwd equals!
-			if(!Auth::authen($user,$data['password'])){return print_r(json_encode(array('err'=>'Wrong password!')));}
-			else{
-				return print_r(json_encode(array('err'=>null,'u_id'=>$user['id'],'u_email'=>$user['email'])));
+			if(!Auth::authen($user,$data['password']))
+			{
+				return App::reqAJ(array('err'=>'Wrong password!'));
+			}else{
+				if(Auth::makeAuthSession($user))return App::reqAJ(array('err'=>null,'user'=>'User loged in.'));
+				else return App::reqAJ(array('err'=>'Start session error! User not loged in.'));	
 			}
-		}else return print_r(json_encode(array('err'=>'User not loged in!')));
+		}else return App::reqAJ(array('err'=>'User not loged in!'));
 	}
-	public function actionDel()
+	public function actionLogout()
 	{
-		$err="";
-		if($_SERVER["REQUEST_METHOD"] == "POST")
-		{
-			//if(!$this->model->del)
-				$this->data["id"] = isset($_POST["id"])?$_POST["id"]:"";
-			//var_dump((int)$this->data["id"]);
-			if((int) $this->data["id"] > 0 && $this->model->del((int)$this->data['id']))
-				App::loged('Address '.$this->data["id"].' deleted.');
-			else App::loged('Error with address delete. '.$this->data["id"]);	
-		}else die;
+		if(Auth::logout()) App::loged('User logout.');	
+		else App::loged('Logout error!');
+		App::redirect();
 	}
 }	
 ?>
