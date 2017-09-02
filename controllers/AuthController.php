@@ -41,6 +41,7 @@ class AuthController
 			//return print_r(json_encode(User::getByEmail($data['email'])));
 			$user = User::getByEmail($data['email']);
 			if(!count($user))return App::reqAJ(array('err'=>'Email not found!'));
+			else $user = $user[0];
 			$data['password'] = isset($data['password'])?htmlentities($data['password']):null;
 			if(!$data['password'] || strlen($data['password']) > 149)return App::reqAJ(array('err'=>'Password error! '.$data['password']));
 			// check pwd equals!

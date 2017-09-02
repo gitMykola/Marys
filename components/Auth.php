@@ -8,14 +8,19 @@ class Auth
 			'admin'=>false,
 			'id'=>null,
 		);
-		if(App::is_session() && $_SESSION['hash'])
+		if(App::is_session() && $_SESSION && $_SESSION['hash'])
 		{
 			$paramsPath = ROOT.'/config/config.php';
 			$params = include($paramsPath);
 			$params = $params['app'];
 			$ses = explode(":",$_SESSION['hash']);
 			$userSes = Auth::getByUserId($ses[1]);
-			if(count($userSes) && (time() - $userSes[0]['login_at'] < $params['session_auth_live']))$user['auth'] = true;
+			if(count($userSes) && (time() - $userSes[0]['login_at'] < $params['session_auth_live']))
+			{
+				$user['auth'] = true;
+				$tuser = User::getById($userSes[0]['user_id']);
+				$user['name'] = $tuser['name_'.LANG];
+			}
 		}
 		return $user;
 	}

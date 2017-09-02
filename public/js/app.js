@@ -40,8 +40,8 @@ $(function(){
 					console.dir(this.responseText);
 					//if(this.responseText.err){
 					var response = JSON.parse(this.responseText);
-					//if (response.err !== null) document.querySelector('#alarm').innerHTML = response.err;//}
-					//else window.location.href = href;
+					if (response.err !== null) document.querySelector('#alarm').innerHTML = response.err;//}
+					else window.location.href = '';
 				}//	else console.dir(this.responseText);
 			};
 			xhttp.open("POST", host + ref, true);

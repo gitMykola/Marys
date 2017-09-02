@@ -38,7 +38,7 @@ class User extends Model{
 		$result->bindParam(':email',$email,PDO::PARAM_STR);
 		$result->setFetchMode(PDO::FETCH_ASSOC);
 		if(!$result->execute()) return false;
-		$data = $result->fetch(PDO::FETCH_ASSOC);
+		$data = $result->fetchAll();
 		return $data;
 		}
 		catch(PDOException $Exception){App::loged($Exception);}
@@ -57,8 +57,8 @@ class User extends Model{
 		$result->bindParam(':password',$hash['hash'],PDO::PARAM_STR);
 		$result->bindParam(':salt',$hash['salt'],PDO::PARAM_STR);
 		$result->bindParam(':avatar',$data['avatar'],PDO::PARAM_STR);
-		$result->bindParam(':create',$data['create'],PDO::PARAM_STR);
-		$result->bindParam(':update',$data['update'],PDO::PARAM_STR);
+		$result->bindParam(':create',$data['create'],PDO::PARAM_INT);
+		$result->bindParam(':update',$data['update'],PDO::PARAM_INT);
 		$result->bindParam(':rating',$data['rating'],PDO::PARAM_INT);
 		$result->setFetchMode(PDO::FETCH_ASSOC);
 		if(!$result->execute()) return false;
