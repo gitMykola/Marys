@@ -2,6 +2,10 @@ html,body,h1,h2,h3,h4,h5,h6,div,a,p,label,input{
     font-family: "Open Sans", sans-serif;
     font-weight:100;
 }
+html,body{
+	display:block;
+	position:relative;
+}
 .form-block{
 	display:none;
 	position:absolute;
@@ -148,10 +152,14 @@ html,body,h1,h2,h3,h4,h5,h6,div,a,p,label,input{
 	opacity:0.5;
 }
 .profile{
+	display:block;
+	position:relative;
 	min-height:100%;
+	width:100%;	
 	background:#333;
 	background:linear-gradient(#000,#555 50%);
-	padding-top:50px;
+	padding:50px 0 30px 0;
+	margin:0;
 }
 form label{
 	font-size:15px;

@@ -38,17 +38,13 @@ $(function(){
 			xhttp.onreadystatechange = function () {
 				if (this.readyState === 4 && this.status === 200) {
 					console.dir(this.responseText);
-					//if(this.responseText.err){
 					var response = JSON.parse(this.responseText);
-					if (response.err !== null) document.querySelector('#alarm').innerHTML = response.err;//}
+					if (response.err !== null) document.querySelector('#alarm').innerHTML = response.err;
 					else window.location.href = '';
-				}//	else console.dir(this.responseText);
+				}
 			};
 			xhttp.open("POST", '/' + ref, true);
-			//xhttp.setRequestHeader('Authorization', 'Basic ' + data['email'] + ':' + data['pwd'])
 			xhttp.setRequestHeader('Content-Type', 'application/json');
-			//console.log(JSON.stringify(data));
-			//console.dir(JSON.stringify(data));
 			xhttp.send(JSON.stringify(data));
 		function verify(data,ref){
 			var err = null;
@@ -79,7 +75,8 @@ function responsive()
     const winw = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     const screenProp = winw/winh;
 	
-	if($('body').innerHeight() < winh)$('body').innerHeight(winh);
+	//if($('body').outerHeight() < winh)$('body').outerHeight(winh);
+	//else $('body').outerHeight($('html').outerHeight());
 }
 function adrGet()
 {

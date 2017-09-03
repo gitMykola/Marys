@@ -32,7 +32,7 @@ class User extends Model{
 	{
 		try{
 		$db = Db::getConnection();
-		$sql = "select u.name_".LANG.",u.email,u.avatar,u.create,up.birthdate,up.sex_".LANG." from `users` u left join `userprofile` up on (u.id = up.user) where u.id=:id";
+		$sql = "select u.name_".LANG.",u.email,u.avatar,u.create,up.phone,up.birthdate,up.sex_".LANG." from `users` u left join `userprofile` up on (u.id = up.user) where u.id=:id";
 		$result = $db->prepare($sql);
 		$result->bindParam(':id',$id,PDO::PARAM_INT);
 		$result->setFetchMode(PDO::FETCH_ASSOC);
