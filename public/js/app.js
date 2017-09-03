@@ -44,7 +44,7 @@ $(function(){
 					else window.location.href = '';
 				}//	else console.dir(this.responseText);
 			};
-			xhttp.open("POST", host + ref, true);
+			xhttp.open("POST", '/' + ref, true);
 			//xhttp.setRequestHeader('Authorization', 'Basic ' + data['email'] + ':' + data['pwd'])
 			xhttp.setRequestHeader('Content-Type', 'application/json');
 			//console.log(JSON.stringify(data));
@@ -70,7 +70,17 @@ $(function(){
 	});
 	
 	//adrGet();
+	responsive();
+	$(window).on('resize orientationchange',function(){responsive();});
 });
+function responsive()
+{
+	const winh = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    const winw = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    const screenProp = winw/winh;
+	
+	if($('body').innerHeight() < winh)$('body').innerHeight(winh);
+}
 function adrGet()
 {
 	$.ajax({

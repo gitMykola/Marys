@@ -20,6 +20,7 @@ class Auth
 				$user['auth'] = true;
 				$tuser = User::getById($userSes[0]['user_id']);
 				$user['name'] = $tuser['name_'.LANG];
+				$user['id'] = $userSes[0]['user_id'];
 			}
 		}
 		return $user;

@@ -147,6 +147,12 @@ html,body,h1,h2,h3,h4,h5,h6,div,a,p,label,input{
 	height:100%;
 	opacity:0.5;
 }
+.profile{
+	min-height:100%;
+	background:#333;
+	background:linear-gradient(#000,#555 50%);
+	padding-top:50px;
+}
 form label{
 	font-size:15px;
 	color:#eee;

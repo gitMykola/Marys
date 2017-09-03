@@ -58,7 +58,7 @@ class AuthController
 	{
 		if(Auth::logout()) App::loged('User logout.');	
 		else App::loged('Logout error!');
-		App::redirect();
+		App::redirect('/'.LANG);
 	}
 }	
 ?>

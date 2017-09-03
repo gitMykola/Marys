@@ -6,6 +6,7 @@ return array(
 	'login'		=>'auth/login',
 	'register'		=>'auth/register',	
 	'logout'		=>'auth/logout',
+	'profile'	=>'user/profile',
 	
 	//Sale & buy market
 	'marketsale/add'		=>'marketsale/add',

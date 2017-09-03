@@ -1,5 +1,5 @@
 <?php
-class UsersController
+class UserController
 {
 	private $model;
 	private $view;
@@ -72,6 +72,16 @@ class UsersController
 				App::loged('Address '.$this->data["id"].' deleted.');
 			else App::loged('Error with address delete. '.$this->data["id"]);	
 		}else die;
+	}
+	public function actionProfile()
+	{
+		if($this->user['auth'])
+		{
+			$profile = User::getProfile($this->user['id']);
+			$profileTpl = ROOT.'/templates/profileTpl.php';
+			$page = ROOT.'/templates/marysPage.php';
+			$this->view->generate($page, $profileTpl, $profile, $this->user);
+		}else App::redirect();
 	}
 }	
 ?>

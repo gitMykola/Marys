@@ -4,7 +4,7 @@
 	$out .= '<a class="menu-brand" href="/'.LANG.'">'.$lex['title'].'</a>';
 	$out .= '<div class="menu-container">';
 	$out .= '<div class="right-panel">';
-	if($user['auth']) $out .= '<a class="u-name"><span class="glyphicon glyphicon-user"></span>'.$user['name'].'</a><a class="logout" href="/logout"><span class="glyphicon glyphicon-log-out"></span>'.$lex['auth']['logout'].'</a>';
+	if($user['auth']) $out .= '<a class="u-name" href="'.LANG.'/profile"><span class="glyphicon glyphicon-user"></span>'.$user['name'].'</a><a class="logout" href="'.LANG.'/logout"><span class="glyphicon glyphicon-log-out"></span>'.$lex['auth']['logout'].'</a>';
 	else {
 			$out .= '<a class="login" href="javascript:void(0);"><span class="glyphicon glyphicon-log-in"></span>'.$lex['auth']['login'].'</a>';
 			$out .= '<a class="register" href="javascript:void(0);"><span class="glyphicon glyphicon-user"></span>'.$lex['auth']['register'].'</a>';
