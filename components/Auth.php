@@ -27,7 +27,7 @@ class Auth
 	}
 	public static function authen($user, $pwd)
 	{
-		/*if(hash_equals($user['password'],crypt($pwd,$user['salt'])))*/return true;
+		if(hash_equals($user['password'],crypt($pwd,$user['salt'])))return true;
 		return false;
 	}
 	public static function makeAuthSession($user)
