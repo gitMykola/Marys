@@ -12,7 +12,7 @@ return array(
 		'charset'=>'utf8',
 		),
 	'app' => array(
-		'site_url'=>'http://marys.com.ua',
+		'site_url'=>'http://www.marys.com.ua',
 		'session_auth_live'=>60*60*2,
 		),		
 );

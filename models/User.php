@@ -13,7 +13,11 @@ class User extends Model{
 	{
 		
 	}
-	public function getById($id)
+	public function set($data)
+    {
+
+    }
+	public static function getById($id)
 	{
 		//validate $email
 		try{
@@ -28,7 +32,7 @@ class User extends Model{
 		}
 		catch(PDOException $Exception){App::loged($Exception);return false;}
 	}
-	public function getProfile($id)
+	public static function getProfile($id)
 	{
 		try{
 		$db = Db::getConnection();
@@ -42,7 +46,7 @@ class User extends Model{
 		}
 		catch(PDOException $Exception){App::loged($Exception);return false;}
 	}
-	public function getByEmail($email)
+	public static function getByEmail($email)
 	{
 		//validate $email
 		try{
@@ -57,7 +61,7 @@ class User extends Model{
 		}
 		catch(PDOException $Exception){App::loged($Exception);}
 	}
-	public function set($data)
+	public static function setUser($data)
 	{
 		if(!User::validate($data))return false;
 		try{
@@ -89,7 +93,7 @@ class User extends Model{
 	{
 		
 	}
-	private function validate($data)
+	private static function validate($data)
 	{
 		return true;
 	}

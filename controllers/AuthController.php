@@ -24,7 +24,7 @@ class AuthController
 			$data['create'] = isset($data['create'])?$data['create']:time();
 			$data['update'] = isset($data['update'])?$data['update']:$data['create'];
 			$data['rating'] = isset($data['rating'])?$data['rating']:0;
-			if(User::set($data)) return print_r(json_encode(array('err'=>null)));
+			if(User::setUser($data)) return print_r(json_encode(array('err'=>null)));
 	}else return print_r(json_encode(array('err'=>'User not created!')));
 	}
 	public function actionLogin()

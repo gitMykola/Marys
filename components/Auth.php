@@ -53,7 +53,8 @@ class Auth
 						$result->bindParam(':user_id',$user['id'],PDO::PARAM_INT);
 						$ip = isset($_SERVER['REMOTE_ADDR'])?$_SERVER['REMOTE_ADDR']:'unknown';
 						$result->bindParam(':user_ip',$ip,PDO::PARAM_STR);
-						$result->bindParam(':login_at',time(),PDO::PARAM_INT);
+                        $time = time();
+						$result->bindParam(':login_at',$time,PDO::PARAM_INT);
 						$result->setFetchMode(PDO::FETCH_ASSOC);
 						if(!$result->execute()) return false;
 						return true;
