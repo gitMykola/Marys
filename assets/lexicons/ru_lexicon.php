@@ -35,7 +35,8 @@ return array(
 		'email'=>'Email',
 		'password'=>'Пароль',
 		'cpassword'=>'Повторить пароль',
-		'loginFB'=>'Зайти с Facebook',
+		'loginFB'=>'Войти с Facebook',
+        'continueFB'=>'Продолжить с Facebook',
 	),	
 );
 ?>

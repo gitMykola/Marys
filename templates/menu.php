@@ -30,6 +30,9 @@
 			<input type="password" class="form-control input-lg" id="password" name="password">
 		  </div>
 		  <button type="submit" class="btn btn-default marys-btn">'.$lex['auth']['login'].'</button>
+		  <div class="btn btn-default facebook-btn" id="btnFB" onclick="loginFB()">'.$lex['auth']['loginFB'].'
+		  	<span class="hidden">'.$lex['auth']['continueFB'].'</span>
+		  </div>
 		  <div class="form-btn" onclick="$(this.parentNode.parentNode).fadeOut();"><span class="glyphicon glyphicon-off" title="'.$lex['buttons']['close'].'"></span></div>
 	</form></div>';
 	$out .= '

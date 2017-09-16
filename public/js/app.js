@@ -16,10 +16,12 @@ $(function(){
 	$('.login').on('click',function(e){
 		e.preventDefault();
 		$('div[name="loginForm"]').fadeToggle();
+        document.querySelector('.alarm-login, .alarm-register').innerHTML = '';
 	});
 	$('.register').on('click',function(e){
 		e.preventDefault();
 		$('div[name="registerForm"]').fadeToggle();
+        document.querySelector('.alarm-login, .alarm-register').innerHTML = '';
 	});
 	$('.auth').on('submit', function (e) {
 		e.preventDefault();

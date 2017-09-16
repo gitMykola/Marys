@@ -36,6 +36,7 @@ return array(
 		'password'=>'Password',
 		'cpassword'=>'Repeat password',
 		'loginFB'=>'Sign In with Facebook',
+        'continueFB'=>'Continue with Facebook',
 	),	
 );
 ?>
