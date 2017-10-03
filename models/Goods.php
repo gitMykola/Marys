@@ -4,8 +4,8 @@ class Goods extends Model{
 	public $mainTemplate;
 	public function __construct()
 	{
-		$this->template = ROOT.'/templates/goods.php';
-		$this->mainTemplate = ROOT.'/templates/marys.php';
+		$this->template = ROOT.DIRECTORY_SEPARATOR.'templates'.DIRECTORY_SEPARATOR.'goods.php';
+		$this->mainTemplate = ROOT.DIRECTORY_SEPARATOR.'templates'.DIRECTORY_SEPARATOR.'marys.php';
 	}
 	public function get($page = null,$limit = null,$sort = null)
 	{

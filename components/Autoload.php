@@ -5,9 +5,9 @@ spl_autoload_register(function($class_name)
 {
 	// folder arrays
 	$array_path = array(
-		'\\models\\',
-		'\\components\\',
-		'\\controllers\\'
+		DIRECTORY_SEPARATOR.'models'.DIRECTORY_SEPARATOR,
+		DIRECTORY_SEPARATOR.'components'.DIRECTORY_SEPARATOR,
+		DIRECTORY_SEPARATOR.'controllers'.DIRECTORY_SEPARATOR
 	);
 	foreach($array_path as $e)
 	{

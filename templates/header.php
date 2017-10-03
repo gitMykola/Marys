@@ -12,6 +12,7 @@
 		<script src="/public/js/app.js"></script>
         <script src="/public/js/fk.js"></script>
 		<link rel="stylesheet" href="/public/css/app.css">
+        <link rel="stylesheet" href="/public/styles/app.css">
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'/>
 
 </head>

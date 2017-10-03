@@ -37,7 +37,9 @@ $(function(){
 		if(data.cpassword)data.cpassword = null;
 			
 			var xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function () {
+			xhttp.onready
+		b.
+			tatechange = function () {
 				if (this.readyState === 4 && this.status === 200) {
 					console.dir(this.responseText);
 					var response = JSON.parse(this.responseText);

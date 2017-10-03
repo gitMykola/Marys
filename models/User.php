@@ -4,8 +4,8 @@ class User extends Model{
 	public $mainTemplate;
 	public function __construct()
 	{
-		$this->template = ROOT.'/templates/users.php';
-		$this->mainTemplate = ROOT.'/templates/marys.php';
+		$this->template = ROOT.DIRECTORY_SEPARATOR.'templates'.DIRECTORY_SEPARATOR.'users.php';
+		$this->mainTemplate = ROOT.DIRECTORY_SEPARATOR.'templates'.DIRECTORY_SEPARATOR.'marys.php';
 		$this->auth = false;
 		$this->admin = false;
 	}

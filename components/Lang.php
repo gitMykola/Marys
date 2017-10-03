@@ -11,7 +11,7 @@ class Lang
 	}
 	public static function getLexicon()
 	{
-		$langFile = ROOT.'/assets/lexicons/'.LANG.'_lexicon.php';
+		$langFile = ROOT.DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR.'lexicons'.DIRECTORY_SEPARATOR.LANG.'_lexicon.php';
 		return (file_exists($langFile))?include_once $langFile:array();
 	}
 }

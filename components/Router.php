@@ -4,7 +4,7 @@ class Router
 	private $routes; //routes array
 	public function __construct()
 	{
-		$routesPath = ROOT.'/components/routes.php';
+		$routesPath = ROOT.DIRECTORY_SEPARATOR.'components'.DIRECTORY_SEPARATOR.'routes.php';
 		//take routes from file
 		$this->routes = include($routesPath);
 	}
@@ -20,7 +20,7 @@ class Router
 		$uri = strtolower($this->getURI());
 		//set lang
 		$uriLang = explode('/',$uri);
-		$paramsPath = ROOT.'/config/config.php';
+		$paramsPath = ROOT.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'config.php';
 		$params = include($paramsPath);
 		$params = $params['lang'];
 		$lang = Lang::get(strtolower(isset($uriLang[0])?$uriLang[0]:''),$params['languages']);
@@ -45,7 +45,7 @@ class Router
 				
 				$parameters = $segments;
 				
-				$controllerFile = ROOT.'/controllers/'.$controllerName.'.php';
+				$controllerFile = ROOT.DIRECTORY_SEPARATOR.'controllers'.DIRECTORY_SEPARATOR.$controllerName.'.php';
 				
 				if(file_exists($controllerFile))include_once($controllerFile);
 				$user = Auth::authorization();

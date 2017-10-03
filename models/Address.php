@@ -4,8 +4,8 @@ class Address extends Model{
 	public $mainTemplate;
 	public function __construct()
 	{
-		$this->template = ROOT.'/templates/address.php';
-		$this->mainTemplate = ROOT.'/templates/marys.php';
+		$this->template = ROOT.DIRECTORY_SEPARATOR.'templates'.DIRECTORY_SEPARATOR.'address.php';
+		$this->mainTemplate = ROOT.DIRECTORY_SEPARATOR.'templates'.DIRECTORY_SEPARATOR.'marys.php';
 	}
 	public function get($page = null,$limit = null,$sort = null)
 	{

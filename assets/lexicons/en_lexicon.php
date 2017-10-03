@@ -24,7 +24,7 @@ return array(
 		'shop'=>'Shop',
 		'about'=>'About',
 		'contacts'=>'Contacts',
-		'shopcart'=>'Shopcart',
+		'shopcart'=>'Bag',
 		'search'=>'Search',
 	),	
 	'auth'=>array(

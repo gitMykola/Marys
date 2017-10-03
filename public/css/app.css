@@ -77,8 +77,8 @@ html,body{
 	display:block;
 	position:relative;
 	width:100%;
-	height:30px;
-	background:#eee	;
+	height:150px;
+	background:#fff	;
 	//background:linear-gradient(#fff,#777);
 	color:#fff;
 	z-index:10;
@@ -106,6 +106,13 @@ html,body{
 	background:#FD02CC;
 	color:#fff;
 	padding:0 15px;
+	transition: transform 0.4s;
+	transform: perspective(500px);
+}
+.menu-brand:hover{
+	transform: perspective(500px) translateZ(50px);
+	color:#fff;
+	cursor:pointer;
 }
 .menu-list{
 	display:flex;
@@ -137,7 +144,7 @@ html,body{
 .menu-under .menu-list li a, .cart{
 	display:block;
 	padding:10px 20px;
-	font-size:20px;
+	font-size:14px;
 	color:#ccc;
 	min-width:100px;
 	transition: color 0.3s;
@@ -149,20 +156,10 @@ html,body{
 	display:none;
 }
 .cart{
-	font-size:15px;
+	font-size:12px;
 }
 .cart span{
 	padding:0 10px;
-}
-.start-slide{
-	display:block;
-	position:relative;
-	height:600px;
-	background:#000;
-}
-.start-slide img{
-	height:100%;
-	opacity:0.5;
 }
 .profile{
 	display:block;

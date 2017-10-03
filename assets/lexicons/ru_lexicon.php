@@ -25,7 +25,7 @@ return array(
 		'about'=>'О нас',
 		'contacts'=>'Контакты',
 		'search'=>'Поиск',
-		'shopcart'=>'Корзина',
+		'shopcart'=>'Покупки',
 	),	
 	'auth'=>array(
 		'login'=>'Войти',

@@ -10,7 +10,7 @@ class Auth
 		);
 		if(App::is_session() && $_SESSION && $_SESSION['hash'])
 		{
-			$paramsPath = ROOT.'/config/config.php';
+			$paramsPath = ROOT.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'config.php';
 			$params = include($paramsPath);
 			$params = $params['app'];
 			$ses = explode(":",$_SESSION['hash']);
