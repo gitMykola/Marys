@@ -7,7 +7,7 @@ class Pagination
 	private $index = 'page';
 	
 	//current page number
-	private $current_page = ;
+	private $currentPage = 1;
 	
 	private $total;
 	
@@ -46,7 +46,7 @@ class Pagination
 		}
 		if(!is_null($links))
 		{
-			if($this-currentPage > 1)
+			if($this->currentPage > 1)
 			{
 				$links = $this->generateHtml(1,'&qt;').$links;
 			}
@@ -67,14 +67,14 @@ class Pagination
 		if(!$text)
 			$text = $page;
 		
-		$currentURI = rtrim($SERVER['REQUEST_URI'],'/').'/';
-		$currentURI = preg_replace("~/page-[0-9]+~","",$currentPage);
+		$currentURI = rtrim($_SERVER['REQUEST_URI'],'/').'/';
+		$currentURI = preg_replace("~/page-[0-9]+~","",$this->currentPage);
 		
 		return '<li class="pagination__item-bottom"><a href="'.$currentURI.$this->index.$page.'">'.$text.'</a></li>';
 	}
 	private function limits()
 	{
-		$left = $this->current_page - round($this->max / 2);
+		$left = $this->currentPage - round($this->max / 2);
 		$start = ($left > 0)?$left:1;
 		if($start + $this->max <= $this->amount)
 		{

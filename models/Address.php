@@ -18,11 +18,12 @@ class Address extends Model{
 		return $result->fetchAll();
 		}
 		catch(PDOException $Exception){App::loged($Exception);}
+		return null;
 	}
 	public function set($data)
 	{
-		if(!$this->validate($data))return false;
 		try{
+        if(!$this->validate($data))return false;
 		$db = Db::getConnection();
 		$sql = "insert into `address` (`country`,`city`,`region`,`street`,`appartment`)"
 		." values(:country, :city, :region, :street, :appartment)";
@@ -37,8 +38,9 @@ class Address extends Model{
 		return $result->fetch();
 		}
 		catch(PDOException $Exception){App::loged($Exception);}
+		return null;
 	}
-	public function update($data	)
+	public function update($data)
 	{
 		
 	}
@@ -53,6 +55,7 @@ class Address extends Model{
 		return $result->fetch();
 		}
 		catch(PDOException $Exception){App::loged($Exception);}
+		return null;
 	}
 	private function validate($data)
 	{

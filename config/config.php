@@ -14,6 +14,7 @@ return array(
 	'app' => array(
 		'site_url'=>'http://www.marys.com.ua',
 		'session_auth_live'=>60*60*2,
+        'pagination_limit'=>5,
 		),		
 );
 ?>

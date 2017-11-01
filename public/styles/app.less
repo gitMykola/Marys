@@ -1,14 +1,48 @@
+@colors:blue, yellow, red, green, lime, purple;
+@names:one, two, three, four, five, six;
+@length:length(@colors);
+
+.slide-one-variation(@colors;@names;@index) when
+  (iscolor(extract(@colors,@index))) and (@index > 0){
+  .slide-one-variation(@colors;@names;(@index - 1));
+  @color : extract(@colors, @index);
+  @name  :extract(@names, @index);
+  .slide-one-div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #333 url('../img/startSlide/gn.jpg');
+    background-size: cover;
+    border: solid 1px @color;
+    a {
+      position: absolute;
+      bottom: 20%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 25px;
+      color:deeppink;
+      background-color: rgba(255,255,255,0.9);
+    }
+  }
+}
+
 .start-slide{
   display:block;
   position:relative;
   height:600px;
   background:#000;
-  background: linear-gradient(#555 5%, #fff);
-  .slide{
+  background: linear-gradient(#333, #fff);
+  .slide-one{
     display: block;
     position:absolute;
-    top:0;
-    left:0;
+    top:50px;
+    left:20%;
+    height:250px;
+    width:250px;
+    .slide-one-variation(@colors; @names; @length);
 
   }
   .slide:nth-child(2) {

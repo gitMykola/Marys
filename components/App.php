@@ -12,7 +12,12 @@ class App
 	}
 	public static function loged($str)
 	{
-		
+		$db = Db::getConnection();
+		$sql = "insert into `logs` (`message`) values(:message)";
+		$result = $db->prepare($sql);
+		$result->bindParam(':message',$str,PDO::PARAM_STR);
+        //$result->setFetchMode(PDO::FETCH_ASSOC);
+        $result->execute();
 	}
 	public static function reqAJ($data)
 	{

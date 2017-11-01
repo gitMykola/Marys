@@ -101,10 +101,7 @@ class User extends Model{
 	{
 		$rndstr ='';
 		$chset = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';	
-		while(strlen($rndstr) < 16)
-		{
-			$rndstr .= $chset[rand(0,strlen($chset) - 1)];
-		}
+		while(strlen($rndstr) < 16)$rndstr .= $chset[rand(0,strlen($chset) - 1)];
 		return array('hash'=>crypt($pwd,$rndstr),'salt'=>$rndstr);
 	}
 }
