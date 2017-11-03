@@ -35,7 +35,7 @@ class AuthController
 			$err = "";
 			$data = json_decode($data,true);
 			//echo $data['name'];
-			$data['name'] = isset($data['name'])?htmlentities($data['name']):null;
+			//$data['name'] = isset($data['name'])?htmlentities($data['name']):null;
 			$data['email'] = isset($data['email'])?htmlentities($data['email']):null;
 			if(!$data['email'] || strlen($data['email']) > 149)return App::reqAJ(array('err'=>'Email error!'));
 			//return print_r(json_encode(User::getByEmail($data['email'])));

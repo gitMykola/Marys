@@ -5,13 +5,14 @@ class Address extends Model{
 	public function __construct()
 	{
 		$this->template = ROOT.DIRECTORY_SEPARATOR.'templates'.DIRECTORY_SEPARATOR.'address.php';
-		$this->mainTemplate = ROOT.DIRECTORY_SEPARATOR.'templates'.DIRECTORY_SEPARATOR.'marys.php';
+		$this->mainTemplate = ROOT.DIRECTORY_SEPARATOR.'templates'.DIRECTORY_SEPARATOR.'marysChild.php';
 	}
 	public function get($page = null,$limit = null,$sort = null)
 	{
 		try{
 		$db = Db::getConnection();
-		$sql = "select `id`,`country`,`city`,`region`, `street`, `appartment` from `address` where 1";
+		$sql = "select `id`,`country_".LANG."`,`city_".LANG."`,`region_"
+            .LANG."`, `street_".LANG."`, `appartment_".LANG."` from `address` where `deleted` = false";
 		$result = $db->prepare($sql);
 		$result->setFetchMode(PDO::FETCH_ASSOC);
 		if(!$result->execute()) return false;
@@ -25,7 +26,9 @@ class Address extends Model{
 		try{
         if(!$this->validate($data))return false;
 		$db = Db::getConnection();
-		$sql = "insert into `address` (`country`,`city`,`region`,`street`,`appartment`)"
+		$sql = "insert into `address` "
+            ."(`country_".LANG."`,`city_".LANG."`,`region_".LANG."`,`street_"
+            .LANG."`,`appartment_".LANG."`)"
 		." values(:country, :city, :region, :street, :appartment)";
 		$result = $db->prepare($sql);
 		$result->bindParam(':country',$data['country'],PDO::PARAM_STR);
@@ -44,6 +47,19 @@ class Address extends Model{
 	{
 		
 	}
+    public function setDel($id)
+    {
+        try{
+            $db = Db::getConnection();
+            $sql = "update `address` set `deleted` = true where id=:id";
+            $result = $db->prepare($sql);
+            $result->bindParam(':id',$id,PDO::PARAM_INT);
+            if(!$result->execute()) return false;
+            return true;
+        }
+        catch(PDOException $Exception){App::loged($Exception);}
+        return false;
+    }
 	public function del($id)
 	{
 		try{
@@ -52,10 +68,10 @@ class Address extends Model{
 		$result = $db->prepare($sql);
 		$result->bindParam(':id',$id,PDO::PARAM_INT);
 		if(!$result->execute()) return false;
-		return $result->fetch();
+		return true;
 		}
 		catch(PDOException $Exception){App::loged($Exception);}
-		return null;
+		return false;
 	}
 	private function validate($data)
 	{

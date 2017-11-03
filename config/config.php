@@ -8,7 +8,7 @@ return array(
 		'host'=>'localhost',
 		'user'=>'root',
 		'dbname'=>'marys',
-		'password'=>'',
+		'password'=>'sequire',
 		'charset'=>'utf8',
 		),
 	'app' => array(

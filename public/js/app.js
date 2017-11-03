@@ -37,9 +37,7 @@ $(function(){
 		if(data.cpassword)data.cpassword = null;
 			
 			var xhttp = new XMLHttpRequest();
-			xhttp.onready
-		b.
-			tatechange = function () {
+			xhttp.onreadystatechange = function () {
 				if (this.readyState === 4 && this.status === 200) {
 					console.dir(this.responseText);
 					var response = JSON.parse(this.responseText);
@@ -84,14 +82,16 @@ function responsive()
 }
 function adrGet()
 {
+
 	$.ajax({
 		type: 'GET',
 		url: '/address/get',
 		success:function(data){
-			//console.log(data);
+			console.log(data);
 			$('.ref-list tbody').html(data);
 			$('.ref-list .btn-delete').on('click',function(e){
 				e.preventDefault();
+				console.log(this.parentNode.parentNode.children['id'].innerHTML);
 				$.post('/address/del',{id:this.parentNode.parentNode.children['id'].innerHTML},
 				function(data){
 					console.dir(data);

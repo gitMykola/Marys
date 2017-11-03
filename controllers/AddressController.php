@@ -15,10 +15,13 @@ class AddressController
 	}
 	public function actionIndex()
 	{
-		if($this->user->auth)
+		if($this->user['auth'])
 		{
-			$this->view->generate($this->model->mainTemplate, $this->model->template, $this->user);
-		}	
+			$this->view->generate($this->model->mainTemplate,
+                $this->model->template,
+                array(),
+                $this->user);
+		}else echo "Access denided.";
 	}
 	public function actionGet($page = null)
 	{
@@ -32,11 +35,11 @@ class AddressController
 				$res = "";
 				foreach($data as $d)
 					$res .= '<tr><td name="id">'.$d["id"].'</td>
-						<td>'.$d["country"].'</td>
-						<td>'.$d["city"].'</td>
-						<td>'.$d["region"].'</td>
-						<td>'.$d["street"].'</td>
-						<td>'.$d["appartment"].'</td>
+						<td>'.$d["country_".LANG].'</td>
+						<td>'.$d["city_".LANG].'</td>
+						<td>'.$d["region_".LANG].'</td>
+						<td>'.$d["street_".LANG].'</td>
+						<td>'.$d["appartment_".LANG].'</td>
 						<td><div class="btn btn-default marys-btn btn-edit" title="'.$lex['buttons']['edit'].'"><span class="glyphicon glyphicon-pencil"></span></div>
 						<div class="btn btn-default marys-btn btn-delete" title="'.$lex['buttons']['delete'].'"><span class="glyphicon glyphicon-remove"></span></div></td>
 				</tr>';
@@ -68,7 +71,7 @@ class AddressController
 			//if(!$this->model->del)
 				$this->data["id"] = isset($_POST["id"])?$_POST["id"]:"";
 			//var_dump((int)$this->data["id"]);
-			if((int) $this->data["id"] > 0 && $this->model->del((int)$this->data['id']))
+			if((int) $this->data["id"] > 0 && $this->model->setDel((int)$this->data['id']))
 				App::loged('Address '.$this->data["id"].' deleted.');
 			else App::loged('Error with address delete. '.$this->data["id"]);	
 		}else die;

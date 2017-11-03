@@ -49,6 +49,7 @@ class Router
 				
 				if(file_exists($controllerFile))include_once($controllerFile);
 				$user = Auth::authorization();
+				//var_export($user);
 				$controllerObject = new $controllerName($user);
 				//echo $controllerName.' '.$actionName.'<br>';
 				if(method_exists($controllerObject, $actionName))
