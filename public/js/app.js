@@ -87,11 +87,14 @@ function adrGet()
 		type: 'GET',
 		url: '/address/get',
 		success:function(data){
-			console.log(data);
+			//console.log(data);
 			$('.ref-list tbody').html(data);
+			$('.ref-list .btn-edit').on('click',function(e){
+				e.preventDefault();
+
+			});
 			$('.ref-list .btn-delete').on('click',function(e){
 				e.preventDefault();
-				console.log(this.parentNode.parentNode.children['id'].innerHTML);
 				$.post('/address/del',{id:this.parentNode.parentNode.children['id'].innerHTML},
 				function(data){
 					console.dir(data);
@@ -100,4 +103,29 @@ function adrGet()
 			});
 		}
 	});
+};
+/************************************************************************
+* MODAL CRUD FORM
+* **********************************************************************
+ * @data{
+ * 			url: string,
+ * 		 method: get|post,
+ * 		 params: json,
+ * 	    headers: json,
+ * 	       data: json,
+ * 	   callback: function
+ * 		}
+ * */
+let modal = function(data){
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) data.callback(this.responseText);
+        else data.callback(null);
+    };
+    let strParams = (typeof data.params === 'object' && data.params.length)?'?':'';
+    for (el in data.params) strParams += el + '=' + data.params[el];
+    xhttp.open(data.method, data.url + strParams, true);
+    xhttp.setRequestHeader('Content-Type', 'application/json');
+    for (h in data.headers) xhttp.setRequestHeader(h,data.headers[h]);
+    xhttp.send(data.data);
 };
