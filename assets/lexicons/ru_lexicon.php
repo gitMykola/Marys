@@ -8,6 +8,8 @@ return array(
 		'edit'=>'Редактировать',
 		'open'=>'Открыть',
 		'close'=>'Закрыть',
+        'yes'=>'Да',
+        'no'=>'Нет',
 		),
 	'ref'=>array(
 		'addr'=>array(
@@ -37,6 +39,10 @@ return array(
 		'cpassword'=>'Повторить пароль',
 		'loginFB'=>'Войти с Facebook',
         'continueFB'=>'Продолжить с Facebook',
-	),	
+	),
+    'message'=>array(
+        'more'=>'Ещё',
+        'continue'=>'Продолжить',
+    )
 );
 ?>

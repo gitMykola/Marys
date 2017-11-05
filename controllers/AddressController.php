@@ -65,14 +65,13 @@ class AddressController
 	}
 	public function actionDel()
 	{
-		$err="";
 		if($_SERVER["REQUEST_METHOD"] == "POST")
 		{
-			//if(!$this->model->del)
-				$this->data["id"] = isset($_POST["id"])?$_POST["id"]:"";
-			//var_dump((int)$this->data["id"]);
+            $data = file_get_contents('php://input');
+            $data = json_decode($data,true);
+			$this->data["id"] = isset($data["id"])?$data["id"]:"";
 			if((int) $this->data["id"] > 0 && $this->model->setDel((int)$this->data['id']))
-				App::loged('Address '.$this->data["id"].' deleted.');
+			App::loged('Address '.$this->data["id"].' deleted.');
 			else App::loged('Error with address delete. '.$this->data["id"]);	
 		}else die;
 	}

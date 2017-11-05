@@ -8,6 +8,8 @@ return array(
 		'edit'=>'Edit',
 		'open'=>'Open',
 		'close'=>'Close',
+        'yes'=>'Yes',
+        'no'=>'No',
 		),
 	'ref'=>array(
 		'addr'=>array(
@@ -37,6 +39,10 @@ return array(
 		'cpassword'=>'Repeat password',
 		'loginFB'=>'Sign In with Facebook',
         'continueFB'=>'Continue with Facebook',
-	),	
+	),
+    'message'=>array(
+        'more'=>'More',
+        'continue'=>'Continue',
+    )
 );
 ?>

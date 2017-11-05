@@ -1,12 +1,12 @@
 <div class="btn-block container">
 	<div class="col-sm-10 col-sm-offset-1">
-		<div class="btn btn-default marys-btn" onclick="$('.add-form-block').slideToggle();">
+		<div class="btn btn-default marys-btn" onclick="$('.add-form-block').fadeToggle();">
 		<?=$lex['buttons']['addAdr']?></div>
 		<div id="adrGet" class="btn btn-default marys-btn">Test</div>
 	</div>	
 </div>
-<div class="add-form-block panel panel-default">
-	<form method="POST" action="/address/set" name="adrForm" class="col-sm-6 col-sm-offset-3">
+<div class="add-form-block panel panel-default modal">
+	<form method="POST" action="" name="adrForm" class="col-sm-6 col-sm-offset-3">
 	  <div class="form-group">
 		<label for="country"><?=$lex['ref']['addr']['country']?>:</label>
 		<input type="text" class="form-control" id="country" name="country">
@@ -53,5 +53,12 @@
 			</div>';
 	?>
 </div>
-<h2 class=" col-sm-6 col-sm-offset-3">
-<?=$lex['title'];?></h2>
+<div class="modalYesNo text-center">
+    <div>
+        <h2><?=$lex['message']['more'];?>?</h2>
+        <p>
+            <p class="btn btn-default marys-btn"><?=$lex['buttons']['no'];?></p>
+            <p class="btn btn-default marys-btn"><?=$lex['buttons']['yes'];?></p>
+        </p>
+    </div>
+</div>

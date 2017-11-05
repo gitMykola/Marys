@@ -66,6 +66,9 @@ $(function(){
 			return true;
 			};
 	});
+	$('.modalYesNo .marys-btn').on('click',(e)=>{
+		e.preventDefault();$('.modalYesNo').fadeToggle(100);
+	});
 	
 	//adrGet();
 	responsive();
@@ -82,28 +85,29 @@ function responsive()
 }
 function adrGet()
 {
-
 	$.ajax({
 		type: 'GET',
 		url: '/address/get',
 		success:function(data){
-			//console.log(data);
 			$('.ref-list tbody').html(data);
 			$('.ref-list .btn-edit').on('click',function(e){
 				e.preventDefault();
-
 			});
 			$('.ref-list .btn-delete').on('click',function(e){
 				e.preventDefault();
-				$.post('/address/del',{id:this.parentNode.parentNode.children['id'].innerHTML},
-				function(data){
-					console.dir(data);
-					adrGet();
-				});
+				sendToServer({
+                    url: '/address/del',
+                    method: 'POST',
+                    headers: {},
+                    data: {id:this.parentNode.parentNode.children['id'].innerHTML},
+                    callback: function(response){
+                        adrGet();
+                    }
+                });
 			});
 		}
 	});
-};
+}
 /************************************************************************
 * MODAL CRUD FORM
 * **********************************************************************
@@ -116,7 +120,7 @@ function adrGet()
  * 	   callback: function
  * 		}
  * */
-let modal = function(data){
+let sendToServer = function(data){
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) data.callback(this.responseText);
@@ -124,8 +128,8 @@ let modal = function(data){
     };
     let strParams = (typeof data.params === 'object' && data.params.length)?'?':'';
     for (el in data.params) strParams += el + '=' + data.params[el];
-    xhttp.open(data.method, data.url + strParams, true);
+    xhttp.open(data.method, 'http://marys.com.ua/' + data.url + strParams, true);
     xhttp.setRequestHeader('Content-Type', 'application/json');
     for (h in data.headers) xhttp.setRequestHeader(h,data.headers[h]);
-    xhttp.send(data.data);
+    xhttp.send(JSON.stringify(data.data));
 };
