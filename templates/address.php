@@ -1,11 +1,11 @@
 <div class="btn-block container">
 	<div class="col-sm-10 col-sm-offset-1">
-		<div class="btn btn-default marys-btn" onclick="$('.add-form-block').fadeToggle();">
+		<div class="btn btn-default marys-btn" onclick="$('.address-form-block').fadeToggle();">
 		<?=$lex['buttons']['addAdr']?></div>
 		<div id="adrGet" class="btn btn-default marys-btn">Test</div>
 	</div>	
 </div>
-<div class="add-form-block panel panel-default modal">
+<div class="address-form-block panel panel-default modal">
 	<form method="POST" action="" name="adrForm" class="col-sm-6 col-sm-offset-3">
 	  <div class="form-group">
 		<label for="country"><?=$lex['ref']['addr']['country']?>:</label>
@@ -28,7 +28,7 @@
 		<input type="text" class="form-control" id="appartment" name="appartment">
 	  </div>
 	  <button type="submit" class="btn btn-default marys-btn"><?=$lex['buttons']['add']?></button>
-	  <div class="form-btn" onclick="$('.add-form-block').fadeOut();"><span class="glyphicon glyphicon-off"></span></div>
+	  <div class="form-btn" onclick="$('.address-form-block').fadeOut();"><span class="glyphicon glyphicon-off"></span></div>
 	</form>
 </div>
 <div class="ref-list col-sm-10 col-sm-offset-1">

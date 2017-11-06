@@ -5,7 +5,7 @@ $(function(){
 		//console.dir(JSON.stringify(document.forms['adrForm']));
 		$.post('/address/set',$(document.forms['adrForm']).serialize(),function(data,status){
 			console.dir(status);
-			$('.form-block').slideToggle();
+			$('.form-block').fadeOut();
 			adrGet();
 		});
 	});
@@ -92,6 +92,15 @@ function adrGet()
 			$('.ref-list tbody').html(data);
 			$('.ref-list .btn-edit').on('click',function(e){
 				e.preventDefault();
+				let fields = this.parentNode.parentNode.querySelectorAll('td');
+				console.log(fields);
+				let fg = document.querySelector('.address-form-block');
+				fg.querySelector('input[name="country"]').value = fields[1].innerText;
+                fg.querySelector('input[name="city"]').value = fields[2].innerText;
+                fg.querySelector('input[name="region"]').value = fields[3].innerText;
+                fg.querySelector('input[name="street"]').value = fields[4].innerText;
+                fg.querySelector('input[name="appartment"]').value = fields[5].innerText;
+				$(('.address-form-block')).fadeIn();
 			});
 			$('.ref-list .btn-delete').on('click',function(e){
 				e.preventDefault();
