@@ -38,21 +38,23 @@ class AddressController
                                 <div name="id"><p>'.$d["id"].'</p>
                                     <label>'.$lex['ref']['addr']['number'].'</label>
                                     </div>
-                                <div name="country"><p>'.$d["country_".LANG].'</p>
-                                    <label>'.$lex['ref']['addr']['country'].'</label>
-                                    </div>
-                                <div name="city"><p>'.$d["city_".LANG].'</p>
-                                    <label>'.$lex['ref']['addr']['city'].'</label>
-                                    </div>
-                                <div name="region"><p>'.$d["region_".LANG].'</p>
-                                    <label>'.$lex['ref']['addr']['region'].'</label>
-                                    </div>
-                                <div name="street"><p>'.$d["street_".LANG].'</p>
-                                    <label>'.$lex['ref']['addr']['street'].'</label>
-                                    </div>
-                                <div name="appartment"><p>'.$d["appartment_".LANG].'</p>
-                                    <label>'.$lex['ref']['addr']['appart'].'</label>
-                                    </div>                    
+                                <div>    
+                                    <div name="country"><p>'.$d["country_".LANG].'</p>
+                                        <label>'.$lex['ref']['addr']['country'].'</label>
+                                        </div>
+                                    <div name="city"><p>'.$d["city_".LANG].'</p>
+                                        <label>'.$lex['ref']['addr']['city'].'</label>
+                                        </div>
+                                    <div name="region"><p>'.$d["region_".LANG].'</p>
+                                        <label>'.$lex['ref']['addr']['region'].'</label>
+                                        </div>
+                                    <div name="street"><p>'.$d["street_".LANG].'</p>
+                                        <label>'.$lex['ref']['addr']['street'].'</label>
+                                        </div>
+                                    <div name="appartment"><p>'.$d["appartment_".LANG].'</p>
+                                        <label>'.$lex['ref']['addr']['appart'].'</label>
+                                        </div>
+                                </div>                            
                             </div>
 				</div>';
 				echo $res;

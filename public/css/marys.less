@@ -8,16 +8,22 @@
 .address-container{
   display:flex;
   flex-flow:row wrap;
-  justify-content: space-around;
+  justify-content: center;
   width:100%;
   padding:10px;
   .address-block{
     display:flex;
-    flex-direction:column;
-    min-width:250px;
-    align-items: flex-start;
-    justify-content: space-around;
+    flex-direction:row;
+    min-width:300px;
+    //align-items: flex-start;
+   // justify-content: space-around;
+
     div{
+      flex-direction:row;
+      flex-basis: auto;
+    }
+    div:first-child{
+      flex-basis: 30px;
     }
   }
 }
