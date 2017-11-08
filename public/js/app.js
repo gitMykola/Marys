@@ -13,6 +13,22 @@ $(function(){
 		e.preventDefault();
 		adrGet();
 	});
+	$('.address-form-block button[name="apply"]').on('click',(e)=>{
+		e.preventDefault();
+		let data = {};
+		data.id = $('.address-form-block p[name="id"]').text();
+        $('.address-form-block input').serializeArray().map(e=>data[e.name] = e.value);
+		console.dir(JSON.stringify(data));
+		sendToServer({
+            url: '/address/update',
+			method: 'POST',
+			headers:{},
+			data : data,
+			callback: (response)=>{
+
+			},
+        });
+	});
 	$('.login').on('click',function(e){
 		e.preventDefault();
 		$('div[name="loginForm"]').fadeToggle();
@@ -89,18 +105,19 @@ function adrGet()
 		type: 'GET',
 		url: '/address/get',
 		success:function(data){
-			$('.ref-list tbody').html(data);
+			$('.address-container').html(data);
 			$('.ref-list .btn-edit').on('click',function(e){
 				e.preventDefault();
 				let fields = this.parentNode.parentNode.querySelectorAll('td');
 				console.log(fields);
 				let fg = document.querySelector('.address-form-block');
+				fg.querySelector('p[name="id"]').innerText = fields[0].innerText;
 				fg.querySelector('input[name="country"]').value = fields[1].innerText;
                 fg.querySelector('input[name="city"]').value = fields[2].innerText;
                 fg.querySelector('input[name="region"]').value = fields[3].innerText;
                 fg.querySelector('input[name="street"]').value = fields[4].innerText;
                 fg.querySelector('input[name="appartment"]').value = fields[5].innerText;
-				$(('.address-form-block')).fadeIn();
+				$('.address-form-block').fadeIn();
 			});
 			$('.ref-list .btn-delete').on('click',function(e){
 				e.preventDefault();

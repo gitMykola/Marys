@@ -10,6 +10,7 @@ return array(
 		'close'=>'Закрыть',
         'yes'=>'Да',
         'no'=>'Нет',
+        'apply'=>'Применить',
 		),
 	'ref'=>array(
 		'addr'=>array(

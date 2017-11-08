@@ -34,15 +34,27 @@ class AddressController
 				$lex = Lang::getLexicon();
 				$res = "";
 				foreach($data as $d)
-					$res .= '<tr><td name="id">'.$d["id"].'</td>
-						<td>'.$d["country_".LANG].'</td>
-						<td>'.$d["city_".LANG].'</td>
-						<td>'.$d["region_".LANG].'</td>
-						<td>'.$d["street_".LANG].'</td>
-						<td>'.$d["appartment_".LANG].'</td>
-						<td><div class="btn btn-default marys-btn btn-edit" title="'.$lex['buttons']['edit'].'"><span class="glyphicon glyphicon-pencil"></span></div>
-						<div class="btn btn-default marys-btn btn-delete" title="'.$lex['buttons']['delete'].'"><span class="glyphicon glyphicon-remove"></span></div></td>
-				</tr>';
+					$res .= '<div class="address-block card-8" name="'.$d["id"].'">
+                                <div name="id"><p>'.$d["id"].'</p>
+                                    <label>'.$lex['ref']['addr']['number'].'</label>
+                                    </div>
+                                <div name="country"><p>'.$d["country_".LANG].'</p>
+                                    <label>'.$lex['ref']['addr']['country'].'</label>
+                                    </div>
+                                <div name="city"><p>'.$d["city_".LANG].'</p>
+                                    <label>'.$lex['ref']['addr']['city'].'</label>
+                                    </div>
+                                <div name="region"><p>'.$d["region_".LANG].'</p>
+                                    <label>'.$lex['ref']['addr']['region'].'</label>
+                                    </div>
+                                <div name="street"><p>'.$d["street_".LANG].'</p>
+                                    <label>'.$lex['ref']['addr']['street'].'</label>
+                                    </div>
+                                <div name="appartment"><p>'.$d["appartment_".LANG].'</p>
+                                    <label>'.$lex['ref']['addr']['appart'].'</label>
+                                    </div>                    
+                            </div>
+				</div>';
 				echo $res;
 			};
 		}else die;

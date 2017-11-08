@@ -3,13 +3,13 @@ return array(
 	'title'=>'MARY\'S',
 	'buttons'=> array(
 		'add'=>'Add',
-		'addAdr'=>'Add new address',
 		'delete'=>'Delete',
 		'edit'=>'Edit',
 		'open'=>'Open',
 		'close'=>'Close',
         'yes'=>'Yes',
         'no'=>'No',
+        'apply'=>'Apply',
 		),
 	'ref'=>array(
 		'addr'=>array(
