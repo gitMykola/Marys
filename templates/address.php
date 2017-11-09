@@ -33,7 +33,7 @@
 	  <div class="form-btn" onclick="$('.address-form-block').fadeOut();"><span class="glyphicon glyphicon-off"></span></div>
 	</form>
 </div>
-<div class="address-container"></div>
+<div class="admin-container address-container"></div>
 <div class="modalYesNo text-center">
     <div>
         <h2><?=$lex['message']['more'];?>?</h2>

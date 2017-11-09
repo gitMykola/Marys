@@ -1,29 +1,57 @@
-@color_light_gray:#ccc;
+@color_card_border:#ccc;
+@color_p_label:#aaa;
 .card-8{
   margin:5px;
   padding:5px;
-  border:solid 1px @color_light_gray;
-  box-shadow: 5px 5px 5px @color_light_gray;
+  border:solid 1px @color_card_border;
+  box-shadow: 5px 5px 5px @color_card_border;
 }
-.address-container{
+.admin-container{
   display:flex;
   flex-flow:row wrap;
   justify-content: center;
   width:100%;
   padding:10px;
-  .address-block{
+  .admin-block-card{
     display:flex;
     flex-direction:row;
-    min-width:300px;
+    width:320px;
     //align-items: flex-start;
-   // justify-content: space-around;
+   // justify-content: space-around; rish 45 21000грн
 
     div{
-      flex-direction:row;
-      flex-basis: auto;
+      display: flex;
+      flex-flow:row wrap;
+      justify-content: flex-start;
+      padding:5px 0;
+      p{
+        font-size: 17px;
+        margin:0 3px -6px 3px;
+      };
+      label{
+        color:@color_p_label;
+        font-size: 10px;
+        text-align: center;
+        width:100%;
+        margin:0;
+      }
     }
     div:first-child{
-      flex-basis: 30px;
+      padding-top:2px;
+    }
+    div[name="id"]{
+      p{
+        font-size: 18px;
+        font-weight: 500;
+        text-align:center;
+      }
+    }
+    div{
+      padding-top:40px;
+      div{
+        display:block;
+        padding-top:2px;
+      }
     }
   }
 }
