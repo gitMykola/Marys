@@ -1,14 +1,18 @@
 <div class="btn-block container">
 	<div class="col-sm-10 col-sm-offset-1">
-		<div class="btn btn-default marys-btn"><?=$lex['buttons']['add']?></div>
-        <div class="btn btn-default marys-btn"><?=$lex['buttons']['edit']?></div>
-        <div class="btn btn-default marys-btn"><?=$lex['buttons']['delete']?></div>
-		<div id="adrGet" class="btn btn-default marys-btn">Test</div>
+		<button name="add" class="btn btn-default marys-btn"><?=$lex['buttons']['add']?></button>
+        <button name="edit" class="btn btn-default marys-btn"><?=$lex['buttons']['edit']?></button>
+        <button name="delete" class="btn btn-default marys-btn"><?=$lex['buttons']['delete']?></button>
+		<button name="test" class="btn btn-default marys-btn">Test</button>
 	</div>	
 </div>
-<div class="address-form-block panel panel-default modal">
+<div name="address" class="address-form-block panel panel-default modal">
     <form method="POST" action="" name="adrForm" class="col-sm-6 col-sm-offset-3">
       <p name="id"></p>
+        <div class="form-group">
+            <label for="code"><?=$lex['ref']['addr']['code']?>:</label>
+            <input type="text" class="form-control" id="code" name="code">
+        </div>
 	  <div class="form-group">
 		<label for="country"><?=$lex['ref']['addr']['country']?>:</label>
 		<input type="text" class="form-control" id="country" name="country">

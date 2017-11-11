@@ -14,6 +14,7 @@ return array(
 	'ref'=>array(
 		'addr'=>array(
 			'number'=>'Number',
+			'code'=>'Post/zip code',
 			'country'=>'Country',
 			'city'=>'City',
 			'region'=>'Region',

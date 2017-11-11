@@ -37,7 +37,10 @@ class AddressController
 					$res .= '<div class="admin-block-card card-8" name="'.$d["id"].'">
                                 <div name="id"><p>'.$d["id"].'</p>
                                     </div>
-                                <div>    
+                                <div>
+                                    <div name="code"><p>'.$d["code"].','.'</p>
+                                        <label>'.$lex['ref']['addr']['code'].'</label>
+                                        </div>    
                                     <div name="country"><p>'.$d["country_".LANG].','.'</p>
                                         <label>'.$lex['ref']['addr']['country'].'</label>
                                         </div>

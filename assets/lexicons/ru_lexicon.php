@@ -15,6 +15,7 @@ return array(
 	'ref'=>array(
 		'addr'=>array(
 			'number'=>'Номер',
+			'code'=>'Почтовый индекс',
 			'country'=>'Страна',
 			'city'=>'Город',
 			'region'=>'Район',

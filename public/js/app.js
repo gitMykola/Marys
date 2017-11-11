@@ -1,5 +1,9 @@
 $(function(){
-	
+
+	$('.admin-block-card').on('click',()=>{
+		$('.admin-block-card').removeClass('card-active');
+		$(this).addClass('card-active');
+	});
 	$('form[name="adrForm"] button[type="submit"]').on('click',function(e){
 		e.preventDefault();
 		//console.dir(JSON.stringify(document.forms['adrForm']));
@@ -9,10 +13,37 @@ $(function(){
 			adrGet();
 		});
 	});
-	$('#adrGet').on('click',function(e){
+	$('.container button[name="test"]').on('click',function(e){
 		e.preventDefault();
 		adrGet();
 	});
+    $('.container button[name="edit"]').on('click',function(e){
+        e.preventDefault();
+        let card = document.querySelector('.admin-container .card-active');
+        if(card) {
+            let fg = document.querySelector('.address-form-block');
+            fg.querySelector('p[name="id"]').innerText = card.querySelector('div[name="id"] p').innerText;
+            fg.querySelector('input[name="code"]').value = card.querySelector('div[name="code"] p').innerText.slice(0, card.querySelector('div[name="code"] p').innerText.length - 1);
+            fg.querySelector('input[name="country"]').value = card.querySelector('div[name="country"] p').innerText.slice(0, card.querySelector('div[name="country"] p').innerText.length - 1);
+            fg.querySelector('input[name="city"]').value = card.querySelector('div[name="city"] p').innerText.slice(0, card.querySelector('div[name="city"] p').innerText.length - 1);
+            fg.querySelector('input[name="region"]').value = card.querySelector('div[name="region"] p').innerText.slice(0, card.querySelector('div[name="region"] p').innerText.length - 1);
+            fg.querySelector('input[name="street"]').value = card.querySelector('div[name="street"] p').innerText.slice(0, card.querySelector('div[name="street"] p').innerText.length - 1);
+            fg.querySelector('input[name="appartment"]').value = card.querySelector('div[name="appartment"] p').innerText.slice(0, card.querySelector('div[name="appartment"] p').innerText.length - 1);
+            $('.address-form-block').fadeIn();
+        }
+    });
+    $('.container button[name="delete"]').on('click',function(e){
+        e.preventDefault();
+        sendToServer({
+            url: '/address/del',
+            method: 'POST',
+            headers: {},
+            data: {id:this.parentNode.parentNode.children['id'].innerHTML},
+            callback: function(response){
+                adrGet();
+            }
+        });
+    });
 	$('.address-form-block button[name="apply"]').on('click',(e)=>{
 		e.preventDefault();
 		let data = {};
@@ -105,31 +136,10 @@ function adrGet()
 		type: 'GET',
 		url: '/address/get',
 		success:function(data){
-			$('.address-container').html(data);
-			$('.ref-list .btn-edit').on('click',function(e){
-				e.preventDefault();
-				let fields = this.parentNode.parentNode.querySelectorAll('td');
-				console.log(fields);
-				let fg = document.querySelector('.address-form-block');
-				fg.querySelector('p[name="id"]').innerText = fields[0].innerText;
-				fg.querySelector('input[name="country"]').value = fields[1].innerText;
-                fg.querySelector('input[name="city"]').value = fields[2].innerText;
-                fg.querySelector('input[name="region"]').value = fields[3].innerText;
-                fg.querySelector('input[name="street"]').value = fields[4].innerText;
-                fg.querySelector('input[name="appartment"]').value = fields[5].innerText;
-				$('.address-form-block').fadeIn();
-			});
-			$('.ref-list .btn-delete').on('click',function(e){
-				e.preventDefault();
-				sendToServer({
-                    url: '/address/del',
-                    method: 'POST',
-                    headers: {},
-                    data: {id:this.parentNode.parentNode.children['id'].innerHTML},
-                    callback: function(response){
-                        adrGet();
-                    }
-                });
+			$('.admin-container').html(data);
+			$('.admin-container .admin-block-card').on('click',function(){
+                $('.admin-block-card').removeClass('card-active');
+                $(this).addClass('card-active');
 			});
 		}
 	});

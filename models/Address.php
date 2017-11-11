@@ -11,7 +11,7 @@ class Address extends Model{
 	{
 		try{
 		$db = Db::getConnection();
-		$sql = "select `id`,`country_".LANG."`,`city_".LANG."`,`region_"
+		$sql = "select `id`,`code`,`country_".LANG."`,`city_".LANG."`,`region_"
             .LANG."`, `street_".LANG."`, `appartment_".LANG."` from `address` where `deleted` = false";
 		$result = $db->prepare($sql);
 		$result->setFetchMode(PDO::FETCH_ASSOC);
