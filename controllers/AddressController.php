@@ -69,6 +69,7 @@ class AddressController
 		if($_SERVER["REQUEST_METHOD"] == "POST")
 		{
 			//var_export($_POST);
+            $this->data["code"] = isset($_POST["code"])?$_POST["code"]:"";
 			$this->data["country"] = isset($_POST["country"])?$_POST["country"]:"";
 			$this->data["city"] = isset($_POST["city"])?$_POST["city"]:"";
 			$this->data["region"] = isset($_POST["region"])?$_POST["region"]:"";

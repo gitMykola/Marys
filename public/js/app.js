@@ -7,7 +7,7 @@ $(function(){
 	$('form[name="adrForm"] button[type="submit"]').on('click',function(e){
 		e.preventDefault();
 		//console.dir(JSON.stringify(document.forms['adrForm']));
-		$.post('/address/set',$(document.forms['adrForm']).serialize(),function(data,status){
+		$.post(document.querySelector('.address-form-block form').getAttribute('action'),$(document.forms['adrForm']).serialize(),function(data,status){
 			console.dir(status);
 			$('.form-block').fadeOut();
 			adrGet();
@@ -22,6 +22,7 @@ $(function(){
         let card = document.querySelector('.admin-container .card-active');
         if(card) {
             let fg = document.querySelector('.address-form-block');
+            fg.querySelector('form').setAttribute('action','/address/update');
             fg.querySelector('p[name="id"]').innerText = card.querySelector('div[name="id"] p').innerText;
             fg.querySelector('input[name="code"]').value = card.querySelector('div[name="code"] p').innerText.slice(0, card.querySelector('div[name="code"] p').innerText.length - 1);
             fg.querySelector('input[name="country"]').value = card.querySelector('div[name="country"] p').innerText.slice(0, card.querySelector('div[name="country"] p').innerText.length - 1);
